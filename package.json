@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-03-image-finder",
+  "name": "goit-react-hw-04-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://EvgeniyOlefir.github.io/goit-react-hw-03-image-finder",
+  "homepage": "https://EvgeniyOlefir.github.io/goit-react-hw-04-movies",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
