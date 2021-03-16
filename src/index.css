@@ -5,7 +5,7 @@
   --color-primary: cadetblue;
   --color-secondary: rgb(5, 86, 88);
   margin-bottom: 20px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 body {
@@ -33,4 +33,12 @@ img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.NavLink {
+  font-size: 20px;
+  color: currentColor;
+}
+.NavLink--active {
+  color: palevioletred;
 }
