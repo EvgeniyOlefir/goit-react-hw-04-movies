@@ -1,12 +1,14 @@
 import React from 'react';
-// import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import routes from '../../routes';
 
 const MovieList = ({ movies }) => {
   return (
     <ul>
       {movies.map(({ id, title, name }) => (
-        <li key={id}>{title || name}</li>
+        <li key={id}>
+          <Link to={`/movies/${id}`}>{title || name}</Link>
+        </li>
       ))}
     </ul>
   );
