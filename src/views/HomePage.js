@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import MovieList from '../../src/components/MovieList';
+import routes from '../routes';
 
 // d0178a81bc9c7d287c5d7ffb12f23888
 // axios.defaults.headers.common['Authorization'] =
@@ -27,7 +28,7 @@ class HomePage extends Component {
         <h1>Trending today</h1>
         {movies.map(({ id, title, name }) => (
           <li key={id}>
-            <Link to={`${this.props.match.url}/${id}`}>{title || name}</Link>
+            <Link to={`${routes.movies}/${id}`}>{title || name}</Link>
           </li>
         ))}
       </div>
