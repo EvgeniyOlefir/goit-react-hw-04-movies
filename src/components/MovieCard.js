@@ -48,7 +48,7 @@ const MovieCard = ({ movie }) => {
               <h2>Genres</h2>
               <ul>
                 {genres.map(({ id, name }) => (
-                  <li>{name}</li>
+                  <li key={id}>{name}</li>
                 ))}
               </ul>
             </>
