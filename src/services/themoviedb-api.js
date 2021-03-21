@@ -1,4 +1,4 @@
-const KEY = '88cc215d69ec27c443b0ab6deb7f5acb';
+const KEY = 'd0178a81bc9c7d287c5d7ffb12f23888';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const imgSize = 'w500';
 const IMG_URL = `https://image.tmdb.org/t/p/${imgSize}/`;
