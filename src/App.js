@@ -1,7 +1,8 @@
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
 import MovieDetailsPage from './views/MovieDetailsPage';
+import routes from './routes';
 
 const App = () => (
   <>
@@ -27,10 +28,10 @@ const App = () => (
       </li>
     </ul>
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/movies/:movieId" component={MovieDetailsPage} />
-      <Route path="/movies" component={MoviesPage} />
-      <Route component={HomePage} />
+      <Route exact path={routes.home} component={HomePage} />
+      <Route path={routes.movieDetails} component={MovieDetailsPage} />
+      <Route path={routes.movies} component={MoviesPage} />
+      <Redirect to={routes.home} />
     </Switch>
   </>
 );

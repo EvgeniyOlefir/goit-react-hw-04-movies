@@ -2,14 +2,22 @@ import { Component } from 'react';
 import MovieList from '../components/MovieList';
 import movieAPI from '../services/movies-api';
 import { ToastContainer, toast } from 'react-toastify';
+import SearchForm from '../components/SearchForm';
 
-class MoviePage extends Component {
+export default class MoviePage extends Component {
+  static propTypes = {};
+
+  static defaultProps = {};
+
   state = {
     movies: [],
+    loading: false,
+    error: null,
   };
 
   componentDidMount() {
     const { query } = this.props.location.search;
+
     if (query) {
       this.fetchMovies(query);
     }
@@ -50,18 +58,16 @@ class MoviePage extends Component {
   };
 
   render() {
-    const { movies, loading } = this.state;
+    const { movies } = this.state;
 
     return (
       <div className="MainContainer">
-        <SearchBar onSubmit={this.handleChangeQuery} />
+        <SearchForm onSubmit={this.handleChangeQuery} />
 
-        {loading ? <Spinner /> : <MovieList movies={movies} />}
+        <MovieList movies={movies} />
 
         <ToastContainer />
       </div>
     );
   }
 }
-
-export default MoviePage;
