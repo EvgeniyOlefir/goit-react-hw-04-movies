@@ -1,6 +1,4 @@
 import { Component } from 'react';
-// import axios from 'axios';
-// import MovieCard from '../components/MovieCard';
 import movieAPI from '../services/movies-api';
 import MovieCard from '../components/MovieCard';
 
