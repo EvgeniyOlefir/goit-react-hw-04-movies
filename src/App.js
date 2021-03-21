@@ -1,38 +1,33 @@
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-import HomePage from './views/HomePage';
-import MoviesPage from './views/MoviesPage';
-import MovieDetailsPage from './views/MovieDetailsPage';
+import React, { Suspense, lazy } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from './routes';
+import AppBar from './components/AppBar/AppBar';
+import Spinner from './components/Spinner/Spinner';
+
+const HomePage = lazy(() =>
+  import('./pages/HomePage.js' /* webpackChunkName: "home-page" */),
+);
+const MovieDetailsPage = lazy(() =>
+  import(
+    './pages/MovieDetailsPage.js' /* webpackChunkName: "home-details-page" */
+  ),
+);
+const MoviesPage = lazy(() =>
+  import('./pages/MoviesPage.js' /* webpackChunkName: "movies-page" */),
+);
 
 const App = () => (
   <>
-    <ul>
-      <li>
-        <NavLink
-          exact
-          to="/"
-          className="NavLink"
-          activeClassName="NavLink--active"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/movies"
-          className="NavLink"
-          activeClassName="NavLink--active"
-        >
-          Movies
-        </NavLink>
-      </li>
-    </ul>
-    <Switch>
-      <Route exact path={routes.home} component={HomePage} />
-      <Route path={routes.movieDetails} component={MovieDetailsPage} />
-      <Route path={routes.movies} component={MoviesPage} />
-      <Redirect to={routes.home} />
-    </Switch>
+    <AppBar />
+
+    <Suspense fallback={<Spinner />}>
+      <Switch>
+        <Route exact path={routes.home} component={HomePage} />
+        <Route path={routes.movieDetails} component={MovieDetailsPage} />
+        <Route path={routes.movies} component={MoviesPage} />
+        <Redirect to={routes.home} />
+      </Switch>
+    </Suspense>
   </>
 );
 

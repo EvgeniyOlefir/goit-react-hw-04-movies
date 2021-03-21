@@ -1,8 +1,11 @@
-import { Component } from 'react';
-import MovieList from '../components/MovieList';
-import movieAPI from '../services/movies-api';
+import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import SearchForm from '../components/SearchForm';
+import 'react-toastify/dist/ReactToastify.css';
+import getQueryParams from '../utils/getQueryParams';
+import SearchBar from '../components/SearchBar/SearchBar';
+import themoviedbAPI from '../services/themoviedb-api';
+import Spinner from '../components/Spinner/Spinner';
+import MovieList from '../components//MovieList/MovieList';
 
 export default class MoviePage extends Component {
   static propTypes = {};
@@ -16,7 +19,7 @@ export default class MoviePage extends Component {
   };
 
   componentDidMount() {
-    const { query } = this.props.location.search;
+    const { query } = getQueryParams(this.props.location.search);
 
     if (query) {
       this.fetchMovies(query);
@@ -24,8 +27,8 @@ export default class MoviePage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { query: prevQuery } = prevProps.location.search;
-    const { query: nextQuery } = this.props.location.search;
+    const { query: prevQuery } = getQueryParams(prevProps.location.search);
+    const { query: nextQuery } = getQueryParams(this.props.location.search);
 
     if (prevQuery !== nextQuery) {
       this.fetchMovies(nextQuery);
@@ -35,7 +38,7 @@ export default class MoviePage extends Component {
   fetchMovies = query => {
     this.setState({ loading: true });
 
-    movieAPI
+    themoviedbAPI
       .fetchMoviesWithQuery(query)
       .then(movies => {
         if (movies.length === 0) {
@@ -58,13 +61,13 @@ export default class MoviePage extends Component {
   };
 
   render() {
-    const { movies } = this.state;
+    const { movies, loading } = this.state;
 
     return (
       <div className="MainContainer">
-        <SearchForm onSubmit={this.handleChangeQuery} />
+        <SearchBar onSubmit={this.handleChangeQuery} />
 
-        <MovieList movies={movies} />
+        {loading ? <Spinner /> : <MovieList movies={movies} />}
 
         <ToastContainer />
       </div>

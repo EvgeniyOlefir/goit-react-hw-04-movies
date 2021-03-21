@@ -1,8 +1,8 @@
-const KEY = 'd0178a81bc9c7d287c5d7ffb12f23888';
+const KEY = '88cc215d69ec27c443b0ab6deb7f5acb';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const imgSize = 'w500';
 const IMG_URL = `https://image.tmdb.org/t/p/${imgSize}/`;
-// const defaultImage = `${IMG_URL}wwemzKWzjKYJFfCeiB57q3r4Bcm.png`;
+const defaultImage = `${IMG_URL}wwemzKWzjKYJFfCeiB57q3r4Bcm.png`;
 
 function fetchTrendingMovies() {
   return fetch(`${BASE_URL}trending/all/day?api_key=${KEY}`)
@@ -12,12 +12,6 @@ function fetchTrendingMovies() {
       results.filter(movieArray => movieArray.media_type === 'movie'),
     );
 }
-
-// axios
-//   .get(
-//     'https://api.themoviedb.org/3/trending/all/day?api_key=d0178a81bc9c7d287c5d7ffb12f23888',
-//   )
-//   .then(res => this.setState({ movies: res.data.results }));
 
 function fetchMoviesWithQuery(query) {
   return fetch(
@@ -49,7 +43,7 @@ function fetchMovieReviews(movieId) {
 
 const themoviedbAPI = {
   IMG_URL,
-  //   defaultImage,
+  defaultImage,
   fetchTrendingMovies,
   fetchMoviesWithQuery,
   fetchMovieDetails,

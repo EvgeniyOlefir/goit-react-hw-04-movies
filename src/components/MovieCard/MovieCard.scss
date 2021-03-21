@@ -1,0 +1,25 @@
+.Card {
+  padding-top: 15px;
+
+  @media screen and (min-width: 1180px) {
+    display: flex;
+  }
+}
+
+.CardInfo {
+  @media screen and (min-width: 1180px) {
+    margin-left: 20px;
+  }
+}
+
+.Title {
+  font-weight: bold;
+}
+
+.Genres {
+  display: flex;
+}
+
+.GenresItem:not(:last-child) {
+  margin-right: 5px;
+}

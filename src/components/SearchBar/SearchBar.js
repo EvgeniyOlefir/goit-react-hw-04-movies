@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import './SearchBar.scss';
+import PropTypes from 'prop-types';
 
-class SearchForm extends Component {
+export default class Searchbar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
+
   state = {
     value: '',
   };
@@ -13,8 +19,9 @@ class SearchForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { value } = this.state;
+
     if (value.trim() === '') {
-      toast('Напишите название фильма');
+      toast('Веедите название фильма');
       return;
     }
 
@@ -24,11 +31,11 @@ class SearchForm extends Component {
 
   render() {
     const { value } = this.state;
-
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="Searchbar">
+        <form onSubmit={this.handleSubmit} className="SearchForm">
           <input
+            className="SearchFormInput"
             type="text"
             name="query"
             value={value}
@@ -36,11 +43,11 @@ class SearchForm extends Component {
             autoComplete="off"
             autoFocus
           />
-          <button type="submit">Search</button>
+          <button type="submit" className="SearchFormButton">
+            Search
+          </button>
         </form>
       </div>
     );
   }
 }
-
-export default SearchForm;
