@@ -1,8 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import MovieList from '../../src/components/MovieList';
 import routes from '../routes';
+import movieAPI from '../services/movies-api';
 
 // d0178a81bc9c7d287c5d7ffb12f23888
 // axios.defaults.headers.common['Authorization'] =
@@ -14,11 +15,14 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        'https://api.themoviedb.org/3/trending/all/day?api_key=d0178a81bc9c7d287c5d7ffb12f23888',
-      )
-      .then(res => this.setState({ movies: res.data.results }));
+    movieAPI
+      .fetchTrendingMovies()
+      .then(movieArray => this.setState({ movies: movieArray }));
+    // axios
+    //   .get(
+    //     'https://api.themoviedb.org/3/trending/all/day?api_key=d0178a81bc9c7d287c5d7ffb12f23888',
+    //   )
+    //   .then(res => this.setState({ movies: res.data.results }));
   }
 
   render() {
