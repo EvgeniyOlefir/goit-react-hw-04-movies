@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import getQueryParams from '../utils/getQueryParams';
+
 import SearchBar from '../components/SearchBar/SearchBar';
 import themoviedbAPI from '../services/themoviedb-api';
 import Spinner from '../components/Spinner/Spinner';
@@ -19,7 +19,7 @@ export default class MoviePage extends Component {
   };
 
   componentDidMount() {
-    const { query } = getQueryParams(this.props.location.search);
+    const { query } = this.props.location.search;
 
     if (query) {
       this.fetchMovies(query);
@@ -27,8 +27,8 @@ export default class MoviePage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { query: prevQuery } = getQueryParams(prevProps.location.search);
-    const { query: nextQuery } = getQueryParams(this.props.location.search);
+    const { query: prevQuery } = prevProps.location.search;
+    const { query: nextQuery } = this.props.location.search;
 
     if (prevQuery !== nextQuery) {
       this.fetchMovies(nextQuery);
